@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.0</version>
+		<version>3.2.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.iesvdm</groupId>
@@ -15,7 +15,7 @@
 	<properties>
 		<!-- mínima versión de java con spring boot 3 -->
 		<java.version>17</java.version>
-<!--		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+		<!--		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
 	</properties>
 	<dependencies>
 
@@ -50,10 +50,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
-			<!-- dependencia para utilizar acceso a base de datos 
+			<!-- dependencia para utilizar acceso a base de datos
 			con estilo de sql directo sobre jdbc (JdbcTemplate) -->
-			<!-- Excluimos el Connection Pool de jdbc de tomcat, 
-			para usar el Hikari Connection Pool más veloz 
+			<!-- Excluimos el Connection Pool de jdbc de tomcat,
+			para usar el Hikari Connection Pool más veloz
 			https://github.com/brettwooldridge/HikariCP-->
 			<exclusions>
 				<exclusion>
@@ -62,7 +62,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- añadimos el connection pool Hikari compatible con java11+, 
+		<!-- añadimos el connection pool Hikari compatible con java11+,
 			automáticamente spring boot lo cogerá en vez
 			del connection pool de tomcat que hemos excluido -->
 		<dependency>
@@ -116,5 +116,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
