@@ -1,0 +1,64 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Cliente</title>
+
+    <style>
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<body>
+<div class="clearfix">
+    <form th:action="@{/clientes/crear}" th:object="${cliente}" method="post">
+
+        <div>
+            <h1>Crear Cliente</h1>
+        </div>
+
+        <div class="clearfix">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" th:field="*{nombre}" type="text" />
+
+            <br>
+            <br>
+
+            <label for="apellido1">Primer apellido</label>
+            <input id="apellido1" th:field="*{apellido1}" type="text" />
+
+            <br>
+            <br>
+
+
+            <label for="apellido2">Segundo apellido</label>
+            <input id="apellido2" th:field="*{apellido2}" type="text" />
+
+            <br>
+            <br>
+
+            <label for="ciudad">Ciudad</label>
+            <input id="ciudad" th:field="*{ciudad}" type="text" />
+
+            <br>
+            <br>
+
+            <label for="categoria">Categoría</label>
+            <input id="categoria" th:field="*{categoria}" type="text" />
+
+            <br>
+            <br>
+
+            <div>
+                <button class="btn btn-blue">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</body>
+</html>
