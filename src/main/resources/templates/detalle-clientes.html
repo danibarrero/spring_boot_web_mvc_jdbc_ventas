@@ -3,39 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Detalles Cliente</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <h1>Detalles del Cliente</h1>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Detalles del Cliente</h1>
 
-        <div>
-            <label>Nombre</label>
-            <input th:value="${cliente.nombre}" value="nombre" readonly="readonly">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" th:value="${cliente.nombre}" class="form-control" readonly="readonly">
         </div>
 
-        <div>
-            <label>Primer apellido</label>
-            <input th:value="${cliente.apellido1}" value="apellido1" readonly="readonly">
+        <div class="form-group">
+            <label for="apellido1">Primer apellido</label>
+            <input type="text" id="apellido1" th:value="${cliente.apellido1}" class="form-control" readonly="readonly">
         </div>
 
-        <div>
-            <label>Segundo apellido</label>
-            <input th:value="${cliente.apellido2}" value="apellido2" readonly="readonly">
+        <div class="form-group">
+            <label for="apellido2">Segundo apellido</label>
+            <input type="text" id="apellido2" th:value="${cliente.apellido2}" class="form-control" readonly="readonly">
         </div>
 
-        <div>
-            <label>Ciudad</label>
-            <input th:value="${cliente.ciudad}" value="ciudad" readonly="readonly">
+        <div class="form-group">
+            <label for="ciudad">Ciudad</label>
+            <input type="text" id="ciudad" th:value="${cliente.ciudad}" class="form-control" readonly="readonly">
         </div>
 
-        <div>
-            <label>Categoría</label>
-            <input th:value="${cliente.categoria}" value="categoria" readonly="readonly">
+        <div class="form-group">
+            <label for="categoria">Categoría</label>
+            <input type="text" id="categoria" th:value="${cliente.categoria}" class="form-control" readonly="readonly">
         </div>
 
-        <form action="/clientes" >
-            <button>Volver</button>
-        </form>
+        <div class="form-group text-center">
+            <form action="/clientes">
+                <button type="submit" class="btn btn-secondary">Volver</button>
+            </form>
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

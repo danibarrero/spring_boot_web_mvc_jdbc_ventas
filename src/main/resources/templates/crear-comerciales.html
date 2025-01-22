@@ -3,41 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Crear Comerciales</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div >
-    <form th:action="@{/comerciales/crear}" th:object="${comercial}" method="post">
+    <div class="container mt-5">
+        <form th:action="@{/comerciales/crear}" th:object="${comercial}" method="post">
+            <h1 class="text-center mb-4">Crear Comerciales</h1>
 
-        <div>
-            <h1>Crear Comerciales</h1>
-        </div>
-
-        <div>
-            <div>
-                <label>Nombre</label>
-                <input th:field="*{nombre}" value="nombre" />
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Nombre">
             </div>
 
-            <div>
-                <label>Primer apellido</label>
-                <input th:field="*{apellido1}" value="apellido1" />
+            <div class="form-group">
+                <label for="apellido1">Primer apellido</label>
+                <input type="text" class="form-control" id="apellido1" th:field="*{apellido1}" placeholder="Primer apellido">
             </div>
 
-            <div>
-                <label>Segundo apellido</label>
-                <input th:field="*{apellido2}" value="apellido2" />
+            <div class="form-group">
+                <label for="apellido2">Segundo apellido</label>
+                <input type="text" class="form-control" id="apellido2" th:field="*{apellido2}" placeholder="Segundo apellido">
             </div>
 
-            <div>
-                <label>Comisión</label>
-                <input th:field="*{comision}" value="ciudad" />
+            <div class="form-group">
+                <label for="comision">Comisión</label>
+                <input type="number" class="form-control" id="comision" th:field="*{comision}" placeholder="Comisión">
             </div>
 
-            <div>
-                <button>Guardar</button>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

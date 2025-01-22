@@ -3,34 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Detalles Comercial</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div>
-    <h1>Detalles del Comercial</h1>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Detalles del Comercial</h1>
 
-    <div>
-        <label>Nombre</label>
-        <input th:value="${comercial.nombre}" value="nombre" readonly="readonly">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" th:value="${comercial.nombre}" class="form-control" readonly="readonly">
+        </div>
+
+        <div class="form-group">
+            <label for="apellido1">Primer apellido</label>
+            <input type="text" id="apellido1" th:value="${comercial.apellido1}" class="form-control" readonly="readonly">
+        </div>
+
+        <div class="form-group">
+            <label for="apellido2">Segundo apellido</label>
+            <input type="text" id="apellido2" th:value="${comercial.apellido2}" class="form-control" readonly="readonly">
+        </div>
+
+        <div class="form-group">
+            <label for="comision">Comisión</label>
+            <input type="text" id="comision" th:value="${comercial.comision}" class="form-control" readonly="readonly">
+        </div>
+
+        <div class="form-group text-center">
+            <form action="/comerciales">
+                <button type="submit" class="btn btn-secondary">Volver</button>
+            </form>
+        </div>
     </div>
 
-    <div>
-        <label>Primer apellido</label>
-        <input th:value="${comercial.apellido1}" value="apellido1" readonly="readonly">
-    </div>
-
-    <div>
-        <label>Segundo apellido</label>
-        <input th:value="${comercial.apellido2}" value="apellido2" readonly="readonly">
-    </div>
-
-    <div>
-        <label>Comisión</label>
-        <input th:value="${comercial.comision}" value="ciudad" readonly="readonly">
-    </div>
-
-    <form action="/comerciales" >
-        <button>Volver</button>
-    </form>
-</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

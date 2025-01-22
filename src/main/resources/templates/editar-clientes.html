@@ -3,48 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Cliente</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <form  th:action="@{/clientes/editar/__${cliente.id}__}" th:object="${cliente}" method="post" >
-            <div>
-                <h1>Editar Cliente</h1>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Editar Cliente</h1>
+
+        <form th:action="@{/clientes/editar/__${cliente.id}__}" th:object="${cliente}" method="post">
+            <div class="form-group">
+                <label for="id">ID</label>
+                <input type="text" id="id" th:field="*{id}" class="form-control" readonly="readonly">
             </div>
 
-            <div>
-                <label>ID</label>
-                <input th:field="*{id}" value="id" readonly="readonly" />
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" value="nombre">
             </div>
 
-            <div>
-                <label>Nombre</label>
-                <input th:field="*{nombre}" value="nombre" />
+            <div class="form-group">
+                <label for="apellido1">Primer apellido</label>
+                <input type="text" id="apellido1" th:field="*{apellido1}" class="form-control" value="apellido1">
             </div>
 
-            <div>
-                <label>Primer apellido</label>
-                <input th:field="*{apellido1}" value="apellido1" />
+            <div class="form-group">
+                <label for="apellido2">Segundo apellido</label>
+                <input type="text" id="apellido2" th:field="*{apellido2}" class="form-control" value="apellido2">
             </div>
 
-            <div>
-                <label>Segundo apellido</label>
-                <input th:field="*{categoria}" value="categoria" />
+            <div class="form-group">
+                <label for="ciudad">Ciudad</label>
+                <input type="text" id="ciudad" th:field="*{ciudad}" class="form-control" value="ciudad">
             </div>
 
-            <div>
-                <label>Ciudad</label>
-                <input th:field="*{ciudad}" value="ciudad" />
+            <div class="form-group">
+                <label for="categoria">Categoría</label>
+                <input type="text" id="categoria" th:field="*{categoria}" class="form-control" value="categoria">
             </div>
 
-            <div>
-                <label>Categoría</label>
-                <input th:field="*{categoria}" value="categoria" />
-            </div>
-
-            <div>
-                <button>Guardar</button>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-success">Guardar</button>
             </div>
         </form>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
