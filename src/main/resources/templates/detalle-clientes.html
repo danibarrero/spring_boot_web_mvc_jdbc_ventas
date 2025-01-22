@@ -10,28 +10,55 @@
         <h1 class="text-center mb-4">Detalles del Cliente</h1>
 
         <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" th:value="${cliente.nombre}" class="form-control" readonly="readonly">
+            <label>Nombre</label>
+            <input type="text" th:value="${cliente.nombre}" class="form-control" readonly="readonly">
         </div>
 
         <div class="form-group">
-            <label for="apellido1">Primer apellido</label>
-            <input type="text" id="apellido1" th:value="${cliente.apellido1}" class="form-control" readonly="readonly">
+            <label>Primer apellido</label>
+            <input type="text" th:value="${cliente.apellido1}" class="form-control" readonly="readonly">
         </div>
 
         <div class="form-group">
-            <label for="apellido2">Segundo apellido</label>
-            <input type="text" id="apellido2" th:value="${cliente.apellido2}" class="form-control" readonly="readonly">
+            <label>Segundo apellido</label>
+            <input type="text" th:value="${cliente.apellido2}" class="form-control" readonly="readonly">
         </div>
 
         <div class="form-group">
-            <label for="ciudad">Ciudad</label>
-            <input type="text" id="ciudad" th:value="${cliente.ciudad}" class="form-control" readonly="readonly">
+            <label>Ciudad</label>
+            <input type="text" th:value="${cliente.ciudad}" class="form-control" readonly="readonly">
         </div>
 
         <div class="form-group">
-            <label for="categoria">Categoría</label>
-            <input type="text" id="categoria" th:value="${cliente.categoria}" class="form-control" readonly="readonly">
+            <label>Categoría</label>
+            <input type="text" th:value="${cliente.categoria}" class="form-control" readonly="readonly">
+        </div>
+
+        <div class="form-group">
+            <h4>Pedidos del Cliente</h4>
+            <div th:each="pedido : ${listaPedidos}" class="mb-3">
+                <div class="form-group">
+                    <label>ID Pedido</label>
+                    <input type="text" th:value="${pedido.id}" class="form-control" readonly="readonly">
+                </div>
+
+                <div class="form-group">
+                    <label>Total</label>
+                    <input type="text" th:value="${pedido.total}" class="form-control" readonly="readonly">
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha</label>
+                    <input type="text" th:value="${pedido.fecha}" class="form-control" readonly="readonly">
+                </div>
+
+                <div class="form-group">
+                    <label>Cliente</label>
+                    <input type="text" th:value="${cliente.nombre}" class="form-control" readonly="readonly">
+                </div>
+
+                <br>
+            </div>
         </div>
 
         <div class="form-group text-center">

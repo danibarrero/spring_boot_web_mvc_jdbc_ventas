@@ -2,7 +2,9 @@ package org.iesvdm.controlador;
 
 import java.util.List;
 
+import org.iesvdm.dao.PedidoDAOImpl;
 import org.iesvdm.modelo.Cliente;
+import org.iesvdm.modelo.Pedido;
 import org.iesvdm.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
+
+	@Autowired
+	private PedidoDAOImpl pedidoDAO;
 
 	// LISTAR
 	@GetMapping("/clientes")
@@ -55,7 +60,14 @@ public class ClienteController {
 	public String detalle(Model model, @PathVariable Integer id) {
 
 		Cliente cliente = clienteService.one(id);
+		List<Pedido> listaPedidos = pedidoDAO.filterByComercialId(id);
+
 		model.addAttribute("cliente", cliente);
+		model.addAttribute("listaPedidos", listaPedidos);
+
+		for (Pedido pedido : listaPedidos) {
+
+		}
 
 		return "detalle-clientes";
 

@@ -11,28 +11,28 @@
 
         <form th:action="@{/comerciales/editar/__${comercial.id}__}" th:object="${comercial}" method="post">
             <div class="form-group">
-                <label for="id">ID</label>
+                <label>ID</label>
                 <input type="text" id="id" th:field="*{id}" class="form-control" readonly="readonly" value="id">
             </div>
 
             <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" value="nombre">
+                <label>Nombre</label>
+                <input type="text" th:field="*{nombre}" class="form-control" value="nombre">
             </div>
 
             <div class="form-group">
-                <label for="apellido1">Primer apellido</label>
-                <input type="text" id="apellido1" th:field="*{apellido1}" class="form-control" value="apellido1">
+                <label>Primer apellido</label>
+                <input type="text" th:field="*{apellido1}" class="form-control" value="apellido1">
             </div>
 
             <div class="form-group">
-                <label for="apellido2">Segundo apellido</label>
-                <input type="text" id="apellido2" th:field="*{apellido2}" class="form-control" value="apellido2">
+                <label>Segundo apellido</label>
+                <input type="text" th:field="*{apellido2}" class="form-control" value="apellido2">
             </div>
 
             <div class="form-group">
-                <label for="comision">Comisión</label>
-                <input type="text" id="comision" th:field="*{comision}" class="form-control" value="comision">
+                <label>Comisión</label>
+                <input type="text" th:field="*{comision}" class="form-control" value="comision">
             </div>
 
             <div class="form-group text-center">

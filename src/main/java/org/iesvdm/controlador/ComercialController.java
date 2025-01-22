@@ -1,7 +1,11 @@
 package org.iesvdm.controlador;
 
+import org.iesvdm.dao.PedidoDAO;
+import org.iesvdm.dao.PedidoDAOImpl;
+import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
+import org.iesvdm.service.ClienteService;
 import org.iesvdm.service.ComercialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +23,12 @@ public class ComercialController {
 
     @Autowired
     private ComercialService comercialService;
+
+    @Autowired
+    private ClienteService clienteService;
+
+    @Autowired
+    private PedidoDAOImpl pedidoDAO;
 
     // LISTAR
     @GetMapping("/comerciales")
@@ -55,7 +65,10 @@ public class ComercialController {
     public String detalle(Model model, @PathVariable Integer id) {
 
         Comercial comercial = comercialService.one(id);
+        List<Pedido> listaPedidos = pedidoDAO.filterByComercialId(id);
+        
         model.addAttribute("comercial", comercial);
+        model.addAttribute("listaPedidos", listaPedidos);
 
         return "detalle-comerciales";
 

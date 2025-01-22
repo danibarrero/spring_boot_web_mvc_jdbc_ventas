@@ -1,5 +1,7 @@
 package org.iesvdm.dao;
 
+import org.iesvdm.modelo.Cliente;
+import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
 
 import java.util.List;
@@ -14,6 +16,9 @@ public interface PedidoDAO {
 
     public void update(Pedido pedido);
 
-    public void delete(long id);
+    public void delete(int id);
+
+    public List<Pedido> filterByClienteId(int id);
+    public List<Pedido> filterByComercialId(int id);
 
 }
