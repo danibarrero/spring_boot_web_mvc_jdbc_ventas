@@ -1,0 +1,50 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Cliente</title>
+</head>
+<body>
+    <div>
+        <form  th:action="@{/clientes/editar/__${cliente.id}__}" th:object="${cliente}" method="post" >
+            <div>
+                <h1>Editar Cliente</h1>
+            </div>
+
+            <div>
+                <label>ID</label>
+                <input th:field="*{id}" value="id" />
+            </div>
+
+            <div>
+                <label>Nombre</label>
+                <input th:field="*{nombre}" value="nombre" />
+            </div>
+
+            <div>
+                <label>Primer apellido</label>
+                <input th:field="*{apellido1}" value="apellido1" />
+            </div>
+
+            <div>
+                <label>Segundo apellido</label>
+                <input th:field="*{categoria}" value="categoria" />
+            </div>
+
+            <div>
+                <label>Ciudad</label>
+                <input th:field="*{ciudad}" value="ciudad" />
+            </div>
+
+            <div>
+                <label>Categoría</label>
+                <input th:field="*{categoria}" value="categoria" />
+            </div>
+
+            <div>
+                <button>Guardar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

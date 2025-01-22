@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ver Detalles Cliente</title>
+</head>
+<body>
+    <div>
+        <h1>Detalles del Cliente</h1>
+
+        <div>
+            <label>Nombre</label>
+            <input th:value="${cliente.nombre}" value="nombre" readonly="readonly">
+        </div>
+
+        <div>
+            <label>Primer apellido</label>
+            <input th:value="${cliente.apellido1}" value="apellido1" readonly="readonly">
+        </div>
+
+        <div>
+            <label>Segundo apellido</label>
+            <input th:value="${cliente.apellido2}" value="apellido2" readonly="readonly">
+        </div>
+
+        <div>
+            <label>Ciudad</label>
+            <input th:value="${cliente.ciudad}" value="ciudad" readonly="readonly">
+        </div>
+
+        <div>
+            <label>Categoría</label>
+            <input th:value="${cliente.categoria}" value="categoria" readonly="readonly">
+        </div>
+
+        <form action="/clientes" >
+            <button>Volver</button>
+        </form>
+    </div>
+</body>
+</html>
