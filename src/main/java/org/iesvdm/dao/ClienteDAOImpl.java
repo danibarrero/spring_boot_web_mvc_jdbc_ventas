@@ -26,14 +26,12 @@ public class ClienteDAOImpl implements ClienteDAO {
 	@Override
 	public synchronized void create(Cliente cliente) {
 
-		//Desde java15+ se tiene la triple quote """ para bloques de texto como cadenas.
 		String sqlInsert = """
                 INSERT INTO cliente (nombre, apellido1, apellido2, ciudad, categoria) 
                 VALUES  (     ?,         ?,         ?,       ?,         ?)
                 """;
 
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		//Con recuperación de id generado
 		int rows = jdbcTemplate.update(connection -> {
 			PreparedStatement ps = connection.prepareStatement(sqlInsert, new String[]{"id"});
 			int idx = 1;
@@ -51,7 +49,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 	/**
-	 * Devuelve lista con todos loa Clientes.
+	 * Devuelve lista con todos los Clientes.
 	 */
 	@Override
 	public List<Cliente> getAll() {
@@ -78,7 +76,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	@Override
 	public Optional<Cliente> find(int id) {
 
-		Cliente  cliente = jdbcTemplate
+		Cliente cliente = jdbcTemplate
 				.queryForObject("SELECT * FROM cliente WHERE id = ?"
 						, (rs, rowNum) -> new Cliente(rs.getInt("id"),
 								rs.getString("nombre"),
@@ -99,7 +97,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 	/**
-	 * Actualiza cliente con campos del bean fabricante según ID del mismo.
+	 * Actualiza cliente ID.
 	 */
 	@Override
 	public void update(Cliente cliente) {

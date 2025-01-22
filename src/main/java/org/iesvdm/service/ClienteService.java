@@ -22,11 +22,13 @@ public class ClienteService {
 	}
 
 	public Cliente one(Integer id) {
-		Optional<Cliente> optPro = clienteDAO.find(id);
-		if (optPro.isPresent())
-			return optPro.get();
+
+		Optional<Cliente> optCli = clienteDAO.find(id);
+		if (optCli.isPresent())
+			return optCli.get();
 		else
 			return null;
+
 	}
 
 	public void newCliente(Cliente cliente) {

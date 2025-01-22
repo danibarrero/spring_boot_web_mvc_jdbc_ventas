@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles Comercial</title>
+</head>
+<body>
+<div>
+    <h1>Detalles del Comercial</h1>
+
+    <div>
+        <label>Nombre</label>
+        <input th:value="${comercial.nombre}" value="nombre" readonly="readonly">
+    </div>
+
+    <div>
+        <label>Primer apellido</label>
+        <input th:value="${comercial.apellido1}" value="apellido1" readonly="readonly">
+    </div>
+
+    <div>
+        <label>Segundo apellido</label>
+        <input th:value="${comercial.apellido2}" value="apellido2" readonly="readonly">
+    </div>
+
+    <div>
+        <label>Comisión</label>
+        <input th:value="${comercial.comision}" value="ciudad" readonly="readonly">
+    </div>
+
+    <form action="/comerciales" >
+        <button>Volver</button>
+    </form>
+</div>
+</body>
+</html>

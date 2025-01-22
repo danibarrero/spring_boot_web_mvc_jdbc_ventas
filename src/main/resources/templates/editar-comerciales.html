@@ -1,0 +1,45 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Comercial</title>
+</head>
+<body>
+<div>
+    <form  th:action="@{/comerciales/editar/__${comercial.id}__}" th:object="${comercial}" method="post" >
+        <div>
+            <h1>Editar Comercial</h1>
+        </div>
+
+        <div>
+            <label>ID</label>
+            <input th:field="*{id}" value="id" readonly="readonly"/>
+        </div>
+
+        <div>
+            <label>Nombre</label>
+            <input th:field="*{nombre}" value="nombre" />
+        </div>
+
+        <div>
+            <label>Primer apellido</label>
+            <input th:field="*{apellido1}" value="apellido1" />
+        </div>
+
+        <div>
+            <label>Segundo apellido</label>
+            <input th:field="*{apellido2}" value="categoria" />
+        </div>
+
+        <div>
+            <label>Comisión</label>
+            <input th:field="*{comision}" value="ciudad" />
+        </div>
+
+        <div>
+            <button>Guardar</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

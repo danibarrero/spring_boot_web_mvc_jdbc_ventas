@@ -19,7 +19,6 @@ public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;
 
-
 	// LISTAR
 	@GetMapping("/clientes")
 	public String listar(Model model) {
@@ -31,16 +30,15 @@ public class ClienteController {
 
 	}
 
-
 	//CREAR
 	@GetMapping("/clientes/crear")
 	public String crear (Model model) {
 
 		Cliente cliente = new Cliente();
-
 		model.addAttribute("cliente", cliente);
 
 		return "crear-clientes";
+
 	}
 
 	@PostMapping("/clientes/crear")
@@ -52,25 +50,26 @@ public class ClienteController {
 
 	}
 
-
 	// DETALLE
 	@GetMapping("/clientes/{id}")
 	public String detalle(Model model, @PathVariable Integer id) {
+
 		Cliente cliente = clienteService.one(id);
 		model.addAttribute("cliente", cliente);
-		return "detalle-clientes";
-	}
 
+		return "detalle-clientes";
+
+	}
 
 	// EDITAR
 	@GetMapping("/clientes/editar/{id}")
 	public String editar (Model model , @PathVariable Integer id) {
 
 		Cliente cliente = clienteService.one(id);
-
 		model.addAttribute("cliente", cliente);
 
 		return "editar-clientes";
+
 	}
 
 	@PostMapping("/clientes/editar/{id}")
@@ -78,14 +77,11 @@ public class ClienteController {
 		clienteService.replaceCliente(cliente);
 
 		return new RedirectView("/clientes");
-
 	}
-
 
 	// BORRAR
 	@PostMapping("/clientes/borrar/{id}")
 	public RedirectView submitBorrar ( @PathVariable Integer id) {
-
 		clienteService.deleteCliente(id);
 
 		return new RedirectView("/clientes") ;

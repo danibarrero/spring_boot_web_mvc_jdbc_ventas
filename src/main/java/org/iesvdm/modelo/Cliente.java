@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Cliente {
 	
-	private long id;
+	private int id;
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
