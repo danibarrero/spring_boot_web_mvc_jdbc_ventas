@@ -65,10 +65,13 @@ public class ComercialController {
     public String detalle(Model model, @PathVariable Integer id) {
 
         Comercial comercial = comercialService.one(id);
-        List<Pedido> listaPedidos = pedidoDAO.filterByComercialId(id);
-        
         model.addAttribute("comercial", comercial);
+
+        List<Pedido> listaPedidos = pedidoDAO.filterByComercialId(id);
         model.addAttribute("listaPedidos", listaPedidos);
+
+        Cliente cliente = clienteService.one(id);
+        model.addAttribute("cliente", cliente);
 
         return "detalle-comerciales";
 

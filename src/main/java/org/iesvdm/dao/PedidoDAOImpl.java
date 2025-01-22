@@ -139,6 +139,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 
         List<Pedido> lista = jdbcTemplate.query(
                 "SELECT * FROM pedido WHERE id_comercial = ?",
+
                 (rs, rowNum) -> new Pedido(
                         rs.getInt("id"),
                         rs.getDouble("total"),

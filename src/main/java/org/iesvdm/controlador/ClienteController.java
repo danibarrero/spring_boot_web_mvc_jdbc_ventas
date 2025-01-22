@@ -60,14 +60,10 @@ public class ClienteController {
 	public String detalle(Model model, @PathVariable Integer id) {
 
 		Cliente cliente = clienteService.one(id);
-		List<Pedido> listaPedidos = pedidoDAO.filterByComercialId(id);
-
 		model.addAttribute("cliente", cliente);
+
+		List<Pedido> listaPedidos = pedidoDAO.filterByComercialId(id);
 		model.addAttribute("listaPedidos", listaPedidos);
-
-		for (Pedido pedido : listaPedidos) {
-
-		}
 
 		return "detalle-clientes";
 
