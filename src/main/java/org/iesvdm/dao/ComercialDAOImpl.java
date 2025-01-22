@@ -121,8 +121,9 @@ public class ComercialDAOImpl implements ComercialDAO {
 	 * Borra Comercial con ID proporcionado.
 	 */
 	@Override
-	public void delete(long id) {
+	public void delete(int id) {
 
+		int rowsPedido = jdbcTemplate.update("DELETE FROM pedido WHERE id_comercial = ?", id);
 		int rows = jdbcTemplate.update("DELETE FROM comercial WHERE id = ?", id);
 
 		log.info("Delete de Comercial con {} registros eliminados.", rows);

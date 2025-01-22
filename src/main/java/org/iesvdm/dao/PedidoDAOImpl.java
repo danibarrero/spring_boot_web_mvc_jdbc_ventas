@@ -91,6 +91,21 @@ public class PedidoDAOImpl implements PedidoDAO {
     @Override
     public void update(Pedido pedido) {
 
+        int rows = jdbcTemplate.update("""
+										UPDATE pedido SET 
+														total = ?, 
+														fecha = ?, 
+														id_cliente = ?,
+														id_comercial = ?,  
+												WHERE id = ?
+										""", pedido.getTotal()
+                , pedido.getFecha()
+                , pedido.getId_cliente()
+                ,pedido.getId_comercial()
+                , pedido.getId());
+
+        log.info("Update de Pedido con {} registros actualizados.", rows);
+
     }
 
     @Override
@@ -101,21 +116,4 @@ public class PedidoDAOImpl implements PedidoDAO {
         log.info("Delete de Pedido con {} registros eliminados.", rows);
     }
 
-    @Override
-    public List<Pedido> getAllPedidoByCliId(int id_cliente) {
-
-        List<Pedido> listPedido = jdbcTemplate.query("SELECT * FROM pedido WHERE id_cliente = ? ",
-                (rs, rowNum) ->
-                        new Pedido(
-                                rs.getInt("id"),
-                                rs.getDouble("total"),
-                                rs.getDate("fecha"),
-                                rs.getInt("id_cliente"),
-                                rs.getInt("id_comercial")
-                        ), id_cliente
-        );
-
-        return listPedido;
-
-    }
 }

@@ -16,5 +16,4 @@ public interface PedidoDAO {
 
     public void delete(long id);
 
-    List<Pedido> getAllPedidoByCliId(int id_cliente);
 }
