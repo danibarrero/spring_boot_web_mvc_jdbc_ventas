@@ -2,53 +2,55 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Detalles Comercial</title>
+    <title th:text="#{msg.commercialDetails}"></title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Detalles del Comercial</h1>
+    <h1 class="text-center mb-4" th:text="#{msg.commercialDetails}"></h1>
 
     <div class="form-group">
-        <label>Nombre</label>
+        <label th:text="#{msg.name}"></label>
         <input type="text" th:value="${comercial.nombre}" class="form-control" readonly="readonly">
     </div>
 
     <div class="form-group">
-        <label>Primer apellido</label>
+        <label th:text="#{msg.surname1}"></label>
         <input type="text" th:value="${comercial.apellido1}" class="form-control" readonly="readonly">
     </div>
 
     <div class="form-group">
-        <label>Segundo apellido</label>
+        <label th:text="#{msg.surname2}"></label>
         <input type="text" th:value="${comercial.apellido2}" class="form-control" readonly="readonly">
     </div>
 
     <div class="form-group">
-        <label>Comisión</label>
+        <label th:text="#{msg.commission}"></label>
         <input type="text" th:value="${comercial.comision}" class="form-control" readonly="readonly">
     </div>
 
+    <br>
+
     <div class="form-group">
-        <h4>Pedidos del Comercial</h4>
+        <h4 th:text="#{msg.customerOrderCommercial}"></h4>
         <div th:each="pedido : ${listaPedidos}" class="mb-3">
             <div class="form-group">
-                <label>ID Pedido</label>
+                <label th:text="#{msg.idOrders}"></label>
                 <input type="text" th:value="${pedido.id}" class="form-control" readonly="readonly">
             </div>
 
             <div class="form-group">
-                <label>Total</label>
+                <label th:text="#{msg.total}"></label>
                 <input type="text" th:value="${pedido.total}" class="form-control" readonly="readonly">
             </div>
 
             <div class="form-group">
-                <label>Fecha</label>
+                <label th:text="#{msg.date}"></label>
                 <input type="text" th:value="${pedido.fecha}" class="form-control" readonly="readonly">
             </div>
 
             <div class="form-group">
-                <label>Cliente</label>
+                <label th:text="#{msg.client}"></label>
                 <input type="text" th:value="${cliente.nombre}" class="form-control" readonly="readonly">
             </div>
 
@@ -58,7 +60,7 @@
 
     <div class="form-group text-center">
         <form action="/comerciales">
-            <button type="submit" class="btn btn-secondary">Volver</button>
+            <button type="submit" class="btn btn-secondary" th:text="#{msg.return}"></button>
         </form>
     </div>
 </div>

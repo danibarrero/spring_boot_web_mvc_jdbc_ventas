@@ -2,36 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Crear Comerciales</title>
+    <title th:text="#{msg.createComercial}"></title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
         <form th:action="@{/comerciales/crear}" th:object="${comercial}" method="post">
-            <h1 class="text-center mb-4">Crear Comerciales</h1>
+            <h1 class="text-center mb-4" th:text="#{msg.createComercial}"></h1>
 
             <div class="form-group">
-                <label>Nombre</label>
+                <label th:text="#{msg.name}"></label>
                 <input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre">
             </div>
 
             <div class="form-group">
-                <label>Primer apellido</label>
+                <label th:text="#{msg.surname1}"></label>
                 <input type="text" class="form-control" th:field="*{apellido1}" placeholder="Primer apellido">
             </div>
 
             <div class="form-group">
-                <label>Segundo apellido</label>
+                <label th:text="#{msg.surname2}"></label>
                 <input type="text" class="form-control" th:field="*{apellido2}" placeholder="Segundo apellido">
             </div>
 
             <div class="form-group">
-                <label>Comisión</label>
+                <label th:text="#{msg.commission}"></label>
                 <input type="number" class="form-control" th:field="*{comision}" placeholder="Comisión">
             </div>
 
             <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-primary" th:text="#{msg.save}"></button>
             </div>
         </form>
     </div>

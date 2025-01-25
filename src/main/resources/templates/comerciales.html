@@ -2,48 +2,55 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Comerciales</title>
+    <title th:text="#{msg.titleComercial}"></title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
         <div class="row mb-3">
             <div class="col-12 col-md-6">
-                <h1>Comerciales</h1>
+                <h1 th:text="#{msg.titleComercial}"></h1>
             </div>
             <div class="col-12 col-md-6 text-md-right">
                 <form action="/comerciales/crear" class="d-inline-block">
-                    <button type="submit" class="btn btn-primary">Crear Comercial</button>
+                    <button type="submit" class="btn btn-primary" th:text="#{msg.createComercial}"></button>
+                </form>
+            </div>
+            <div class="col-12 col-md-12 text-md-right">
+                <form action="/" class="d-inline-block">
+                    <button type="submit" class="btn btn-primary" th:text="#{msg.return}"></button>
                 </form>
             </div>
         </div>
 
+        <br>
+
         <div class="row mb-2">
-            <div class="col-12 col-md-1"><strong>ID</strong></div>
-            <div class="col-12 col-md-2"><strong>Nombre</strong></div>
-            <div class="col-12 col-md-2"><strong>Apellido1</strong></div>
-            <div class="col-12 col-md-2"><strong>Apellido2</strong></div>
-            <div class="col-12 col-md-2"><strong>Comisión</strong></div>
-            <div class="col-12 col-md-3 text-center"><strong>Acción</strong></div>
+            <div class="col-12 col-md-1"><strong th:text="#{msg.id}"></strong></div>
+            <div class="col-12 col-md-2"><strong th:text="#{msg.name}"></strong></div>
+            <div class="col-12 col-md-2"><strong th:text="#{msg.surname1}"></strong></div>
+            <div class="col-12 col-md-2"><strong th:text="#{msg.surname2}"></strong></div>
+            <div class="col-12 col-md-2"><strong th:text="#{msg.commission}"></strong></div>
+            <div class="col-12 col-md-3 text-center"><strong th:text="#{msg.action}"></strong></div>
         </div>
         <hr/>
 
         <div th:each="comercial : ${listaComerciales}" class="row mb-2">
-            <div class="col-12 col-md-1" th:text="${comercial.id}">0</div>
-            <div class="col-12 col-md-2" th:text="${comercial.nombre}">nombre</div>
-            <div class="col-12 col-md-2" th:text="${comercial.apellido1}">apellido1</div>
-            <div class="col-12 col-md-2" th:text="${comercial.apellido2 ?: '&nbsp;'}">apellido2</div>
-            <div class="col-12 col-md-2" th:text="${comercial.comision}">comisión</div>
-            <div class="col-12 col-md-3 text-center">
+            <div class="col-12 col-md-1" th:text="${comercial.id}"></div>
+            <div class="col-12 col-md-2" th:text="${comercial.nombre}"></div>
+            <div class="col-12 col-md-2" th:text="${comercial.apellido1}"></div>
+            <div class="col-12 col-md-2" th:text="${comercial.apellido2 ?: '&nbsp;'}"></div>
+            <div class="col-12 col-md-2" th:text="${comercial.comision}"></div>
+            <div class="col-12 col-md-3">
                 <div class="d-flex justify-content-center">
                     <form th:action="@{/comerciales/__${comercial.id}__}" class="d-inline mr-2">
-                        <button type="submit" class="btn btn-dark btn-sm">Detalles</button>
+                        <button type="submit" class="btn btn-dark btn-sm" th:text="#{msg.details}"></button>
                     </form>
                     <form th:action="@{/comerciales/editar/__${comercial.id}__}" class="d-inline mr-2">
-                        <button type="submit" class="btn btn-success btn-sm">Editar</button>
+                        <button type="submit" class="btn btn-success btn-sm" th:text="#{msg.edit}"></button>
                     </form>
                     <form th:action="@{/comerciales/borrar/__${comercial.id}__}" method="post" class="d-inline">
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        <button type="submit" class="btn btn-danger btn-sm" th:text="#{msg.delete}"></button>
                     </form>
                 </div>
             </div>

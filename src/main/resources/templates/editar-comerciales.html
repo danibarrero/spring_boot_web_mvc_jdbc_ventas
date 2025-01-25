@@ -2,41 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Comercial</title>
+    <title th:text="#{msg.editCommercial}"></title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Editar Comercial</h1>
+        <h1 class="text-center mb-4" th:text="#{msg.editCommercial}"></h1>
 
         <form th:action="@{/comerciales/editar/__${comercial.id}__}" th:object="${comercial}" method="post">
             <div class="form-group">
-                <label>ID</label>
+                <label th:text="#{msg.id}"></label>
                 <input type="text" id="id" th:field="*{id}" class="form-control" readonly="readonly" value="id">
             </div>
 
             <div class="form-group">
-                <label>Nombre</label>
+                <label th:text="#{msg.name}"></label>
                 <input type="text" th:field="*{nombre}" class="form-control" value="nombre">
             </div>
 
             <div class="form-group">
-                <label>Primer apellido</label>
+                <label th:text="#{msg.surname1}"></label>
                 <input type="text" th:field="*{apellido1}" class="form-control" value="apellido1">
             </div>
 
             <div class="form-group">
-                <label>Segundo apellido</label>
+                <label th:text="#{msg.surname2}"></label>
                 <input type="text" th:field="*{apellido2}" class="form-control" value="apellido2">
             </div>
 
             <div class="form-group">
-                <label>Comisión</label>
+                <label th:text="#{msg.commission}"></label>
                 <input type="text" th:field="*{comision}" class="form-control" value="comision">
             </div>
 
             <div class="form-group text-center">
-                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="submit" class="btn btn-success" th:text="#{msg.save}"></button>
             </div>
         </form>
     </div>
