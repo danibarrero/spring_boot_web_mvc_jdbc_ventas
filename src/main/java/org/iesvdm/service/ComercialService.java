@@ -1,6 +1,7 @@
 package org.iesvdm.service;
 
 import org.iesvdm.dao.ComercialDAO;
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
@@ -48,6 +49,12 @@ public class ComercialService {
     public void deleteComercial(int id) {
 
         comercialDAO.delete(id);
+
+    }
+
+    public ComercialDTO totalMediaPedidos(int id) {
+
+        return comercialDAO.totalMediaPedidos(id);
 
     }
 

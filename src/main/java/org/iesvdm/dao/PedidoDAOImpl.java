@@ -1,8 +1,10 @@
 package org.iesvdm.dao;
 
 import lombok.extern.slf4j.Slf4j;
+import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -151,6 +153,15 @@ public class PedidoDAOImpl implements PedidoDAO {
         );
 
         return lista;
+    }
+
+    @Override
+    public List<PedidoDTO> filterByComercialIdDTO(int id) {
+
+        String sql = "SELECT * FROM pedido WHERE id_comercial = ?";
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PedidoDTO.class), id);
+
     }
 
 }

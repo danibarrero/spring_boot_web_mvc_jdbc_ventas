@@ -4,8 +4,10 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -127,6 +129,23 @@ public class ComercialDAOImpl implements ComercialDAO {
 		int rows = jdbcTemplate.update("DELETE FROM comercial WHERE id = ?", id);
 
 		log.info("Delete de Comercial con {} registros eliminados.", rows);
+
+	}
+
+	@Override
+	public ComercialDTO totalMediaPedidos(int id) {
+
+		String sql = """
+			SELECT
+				  COUNT(*) AS totalPedidos,
+				   ROUND (AVG(p.total), 2) AS mediaPedidos
+			  FROM
+				  pedido p
+			  WHERE
+				  p.id_comercial = ? 
+		""";
+
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<ComercialDTO>(ComercialDTO.class), id);
 
 	}
 
