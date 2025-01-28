@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
+import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
@@ -146,6 +147,21 @@ public class ComercialDAOImpl implements ComercialDAO {
 		""";
 
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<ComercialDTO>(ComercialDTO.class), id);
+
+	}
+
+	@Override
+	public List<ClienteDTO> listaCuantia(int id) {
+
+		String query = """
+                SELECT c.nombre, ROUND(SUM(p.total), 2)  AS cuantia
+                                   FROM pedido p
+                                   JOIN cliente c ON c.id = p.id_cliente
+                                   WHERE p.id_comercial = ?
+                                   GROUP BY c.id, c.nombre
+                                   ORDER BY cuantia DESC;
+                """;
+		return  jdbcTemplate.query(query, new BeanPropertyRowMapper<>(ClienteDTO.class), id);
 
 	}
 

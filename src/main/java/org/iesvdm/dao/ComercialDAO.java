@@ -3,6 +3,7 @@ package org.iesvdm.dao;
 import java.util.List;
 import java.util.Optional;
 
+import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Comercial;
 
@@ -15,5 +16,6 @@ public interface ComercialDAO {
 	void delete(int id);
 
 	ComercialDTO totalMediaPedidos (int id);
+	List<ClienteDTO>listaCuantia(int id);
 
 }

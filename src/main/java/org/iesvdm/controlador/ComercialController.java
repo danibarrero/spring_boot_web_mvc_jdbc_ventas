@@ -2,6 +2,7 @@ package org.iesvdm.controlador;
 
 import org.iesvdm.dao.PedidoDAO;
 import org.iesvdm.dao.PedidoDAOImpl;
+import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Cliente;
@@ -91,6 +92,9 @@ public class ComercialController {
                 .min(Comparator.comparingDouble(PedidoDTO::getTotal))
                 .orElse(null);
         model.addAttribute("minPedido", minPedido);
+
+        List<ClienteDTO> listaClienteDTO = comercialService.listaCuantia(id);
+        model.addAttribute("listaClienteDTO", listaClienteDTO);
 
         return "detalle-comerciales";
 

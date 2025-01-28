@@ -41,6 +41,20 @@
 
     <br>
 
+    <div>
+        <h4>Leyenda:</h4>
+        <div class="mb-3 d-flex align-items-center">
+            <span>Máximo</span>
+            <span style="display: inline-block; width: 20px; height: 20px; background-color: #28a745; border-radius: 4px; margin-left: 3px"></span>
+        </div>
+        <div class="mb-3 d-flex align-items-center">
+            <span>Mínimo</span>
+            <span style="display: inline-block; width: 20px; height: 20px; background-color: #ffc107;border-radius: 4px; margin-left: 3px"></span>
+        </div>
+    </div>
+
+    <br>
+
     <div class="form-group">
         <h4 th:text="#{msg.customerOrderCommercial}"></h4>
 
@@ -52,8 +66,7 @@
 
             <div class="form-group">
                 <label th:text="#{msg.total}"></label>
-                <input
-                        type="text"
+                <input type="text"
                         th:value="${#numbers.formatDecimal(pedido.total, 1, 2)}"
                         th:class="${pedido.id == maxPedido.id ? 'bg-success text-white' : (pedido.id == minPedido.id ? 'bg-warning' : '')} + ' form-control'"
                         readonly="readonly">
@@ -73,6 +86,24 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <h3>Por cuantía</h3>
+        <div th:each="cliente : ${listaClienteDTO}" class="mb-3">
+
+            <div>
+                <label>Nombre</label>
+                <input type="text" th:value="${cliente.nombre}"  class="form-control" readonly="readonly">
+            </div>
+
+            <div>
+                <label>Total</label>
+                <input type="text" th:value="${cliente.cuantia}" class="form-control" readonly="readonly">
+            </div>
+
+            <br>
+
+        </div>
+    </div>
 
     <div class="form-group text-center">
         <form action="/comerciales">
