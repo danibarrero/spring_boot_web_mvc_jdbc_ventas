@@ -134,14 +134,24 @@ public class ComercialDAOImpl implements ComercialDAO {
 	}
 
 	@Override
-	public ComercialDTO totalMediaPedidos(int id) {
+	public ComercialDTO totalPedidos(int id) {
 
 		String sql = """
-					SELECT COUNT(*) AS totalPedidos, ROUND (AVG(p.total), 2) AS mediaPedidos
-			  		FROM pedido p WHERE p.id_comercial = ? 
+            SELECT COUNT(*) AS totalPedidos FROM pedido WHERE id_comercial = ?
+            """;
+
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(ComercialDTO.class), id);
+
+	}
+
+	@Override
+	public ComercialDTO mediaPedidos(int id) {
+
+		String sql = """
+				SELECT ROUND(AVG(total),2) AS mediaPedidos FROM pedido WHERE id_comercial = ?
 				""";
 
-		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<ComercialDTO>(ComercialDTO.class), id);
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(ComercialDTO.class), id);
 
 	}
 
@@ -149,13 +159,15 @@ public class ComercialDAOImpl implements ComercialDAO {
 	public List<ClienteDTO> listaCuantia(int id) {
 
 		String query = """
-                SELECT c.nombre, ROUND(SUM(p.total), 2)  AS cuantia
-                                   FROM pedido p
-                                   JOIN cliente c ON c.id = p.id_cliente
-                                   WHERE p.id_comercial = ?
-                                   GROUP BY c.id, c.nombre
-                                   ORDER BY cuantia DESC;
-                """;
+						SELECT cliente.nombre, ROUND(SUM(total), 2) AS cuantia
+						FROM pedido 
+						JOIN cliente ON cliente.id = pedido.id_cliente
+						WHERE id_comercial = ?
+						GROUP BY cliente.id, cliente.nombre
+						ORDER BY cuantia DESC;
+					""";
+
+
 		return  jdbcTemplate.query(query, new BeanPropertyRowMapper<>(ClienteDTO.class), id);
 
 	}

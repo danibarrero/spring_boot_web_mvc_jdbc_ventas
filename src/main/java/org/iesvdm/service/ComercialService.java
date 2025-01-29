@@ -53,9 +53,15 @@ public class ComercialService {
 
     }
 
-    public ComercialDTO totalMediaPedidos(int id) {
+    public ComercialDTO totalPedidos(int id) {
 
-        return comercialDAO.totalMediaPedidos(id);
+        return comercialDAO.totalPedidos(id);
+
+    }
+
+    public ComercialDTO mediaPedidos(int id) {
+
+        return comercialDAO.mediaPedidos(id);
 
     }
 

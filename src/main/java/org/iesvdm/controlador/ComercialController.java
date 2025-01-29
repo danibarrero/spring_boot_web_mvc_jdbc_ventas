@@ -77,8 +77,11 @@ public class ComercialController {
         Cliente cliente = clienteService.one(id);
         model.addAttribute("cliente", cliente);
 
-        ComercialDTO comercialDTO = comercialService.totalMediaPedidos(id);
-        model.addAttribute("comercialDTO", comercialDTO);
+        ComercialDTO comercialDTOTotal = comercialService.totalPedidos(id);
+        model.addAttribute("comercialDTOTotal", comercialDTOTotal);
+
+        ComercialDTO comercialDTOMedia = comercialService.mediaPedidos(id);
+        model.addAttribute("comercialDTOMedia", comercialDTOMedia);
 
         List <PedidoDTO> listaPedidosDTO = pedidoDAO.filterByComercialIdDTO(id);
         model.addAttribute("listaPedidosDTO", listaPedidosDTO);

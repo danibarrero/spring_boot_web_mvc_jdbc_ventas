@@ -15,7 +15,8 @@ public interface ComercialDAO {
 	void update(Comercial comercial);
 	void delete(int id);
 
-	ComercialDTO totalMediaPedidos (int id);
+	ComercialDTO totalPedidos (int id);
+	ComercialDTO mediaPedidos (int id);
 	List<ClienteDTO>listaCuantia(int id);
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.iesvdm.dto.ClienteDTO;
+import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Cliente;
 
 public interface ClienteDAO {
@@ -13,5 +14,7 @@ public interface ClienteDAO {
 	Optional<Cliente>  find(int id);
 	void update(Cliente cliente);
 	void delete(int id);
+
+	ClienteDTO conteoComeriales(int id);
 
 }

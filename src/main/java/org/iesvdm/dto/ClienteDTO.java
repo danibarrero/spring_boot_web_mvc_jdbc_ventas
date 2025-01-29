@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.iesvdm.modelo.Comercial;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,5 +21,11 @@ public class ClienteDTO {
     private String ciudad;
     private int categoria;
     private double cuantia;
+
+    private int pedidosPorComercial;
+    private int trimestre;
+    private int semestre;
+    private int año;
+    private int lustro;
 
 }

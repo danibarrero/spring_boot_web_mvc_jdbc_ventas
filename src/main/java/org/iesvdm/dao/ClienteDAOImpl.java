@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.iesvdm.dto.ClienteDTO;
+import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -135,6 +137,17 @@ public class ClienteDAOImpl implements ClienteDAO {
 		int rows = jdbcTemplate.update("DELETE FROM cliente WHERE id = ?", id);
 
 		log.info("Delete de Cliente con {} registros eliminados.", rows);
+
+	}
+
+	@Override
+	public ClienteDTO conteoComeriales(int id) {
+		String sql = """
+						SELECT COUNT(*) AS pedidosPorComercial
+						FROM pedido WHERE id_comercial = ?
+					""";
+
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(ClienteDTO.class), id);
 
 	}
 

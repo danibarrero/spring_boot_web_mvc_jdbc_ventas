@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
-import java.sql.Date;
 
 @Slf4j
 @Repository
@@ -34,7 +33,7 @@ public class PedidoDAOImpl implements PedidoDAO {
             PreparedStatement ps = connection.prepareStatement(sqlInsert, new String[]{"id"});
             int idx = 1;
             ps.setDouble(idx++, pedido.getTotal());
-            ps.setDate(idx++, new Date(pedido.getFecha().getTime()));
+            ps.setDate(idx++, pedido.getFecha());
             ps.setInt(idx++, pedido.getId_cliente());
             ps.setInt(idx, pedido.getId_comercial());
             return ps;
