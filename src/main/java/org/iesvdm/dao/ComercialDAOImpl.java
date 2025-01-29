@@ -137,14 +137,9 @@ public class ComercialDAOImpl implements ComercialDAO {
 	public ComercialDTO totalMediaPedidos(int id) {
 
 		String sql = """
-			SELECT
-				  COUNT(*) AS totalPedidos,
-				   ROUND (AVG(p.total), 2) AS mediaPedidos
-			  FROM
-				  pedido p
-			  WHERE
-				  p.id_comercial = ? 
-		""";
+					SELECT COUNT(*) AS totalPedidos, ROUND (AVG(p.total), 2) AS mediaPedidos
+			  		FROM pedido p WHERE p.id_comercial = ? 
+				""";
 
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<ComercialDTO>(ComercialDTO.class), id);
 

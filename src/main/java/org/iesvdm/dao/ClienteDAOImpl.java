@@ -4,9 +4,11 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
+import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.modelo.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -19,6 +21,8 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private JdbcClient jdbcClient;
 
 	/**
 	 * Inserta en base de datos el nuevo Cliente, actualizando el id en el bean Cliente.

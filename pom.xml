@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.0</version>
+		<version>3.4.1</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.iesvdm</groupId>
@@ -16,11 +16,25 @@
 		<!-- mínima versión de java con spring boot 3 -->
 		<java.version>17</java.version>
 		<!--		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+
 	</properties>
 	<dependencies>
 
 		<!-- añadimos devtools para obtener la funcionalidad de LiveReload
 		 del proyecto -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.5.5.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok-mapstruct-binding</artifactId>
+			<version>0.2.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -50,41 +64,16 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
-			<!-- dependencia para utilizar acceso a base de datos
-			con estilo de sql directo sobre jdbc (JdbcTemplate) -->
-			<!-- Excluimos el Connection Pool de jdbc de tomcat,
-			para usar el Hikari Connection Pool más veloz
-			https://github.com/brettwooldridge/HikariCP-->
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.tomcat</groupId>
-					<artifactId>tomcat-jdbc</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<!-- añadimos el connection pool Hikari compatible con java11+,
 			automáticamente spring boot lo cogerá en vez
 			del connection pool de tomcat que hemos excluido -->
-		<dependency>
-			<groupId>com.zaxxer</groupId>
-			<artifactId>HikariCP</artifactId>
-			<version>5.0.1</version>
-			<!-- hay que aceptar el warning para compatibilidad con java11+
-			https://github.com/brettwooldridge/HikariCP-->
-		</dependency>
 
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.6.0</version>
-		</dependency>
-
 
 		<!-- añadimos lombok para mayor simplificación del código -->
 		<dependency>
@@ -107,17 +96,37 @@
 		<finalName>spring_boot_web_mvc_jdbc_ventas</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
 				<configuration>
-					<excludes>
-						<exclude>
+					<source>21</source> <!-- or your Java version -->
+					<target>21</target> <!-- or your Java version -->
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>1.5.5.Final</version>
+						</path>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-mapstruct-binding</artifactId>
+							<version>0.2.0</version>
+						</path>
+						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
+							<version>1.18.36</version>
+						</path>
+						<path>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-configuration-processor</artifactId>
+							<version>3.4.1</version>
+						</path>
+					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
 		</plugins>
+
 	</build>
 </project>
