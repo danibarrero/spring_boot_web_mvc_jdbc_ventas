@@ -67,9 +67,9 @@
             <div class="form-group">
                 <label th:text="#{msg.total}"></label>
                 <input type="text"
-                        th:value="${pedido.total}"
-                        th:class="${pedido.id == maxPedido.id ? 'bg-success text-white' : (pedido.id == minPedido.id ? 'bg-warning' : '')} + ' form-control'"
-                        readonly="readonly">
+                    th:value="${pedido.total}"
+                    th:class="${pedido.id == maxPedido.id ? 'bg-success text-white' : (pedido.id == minPedido.id ? 'bg-warning' : '')} + ' form-control'"
+                    readonly="readonly">
             </div>
 
             <div class="form-group">

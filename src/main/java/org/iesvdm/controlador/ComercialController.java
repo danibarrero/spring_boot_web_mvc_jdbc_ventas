@@ -1,5 +1,6 @@
 package org.iesvdm.controlador;
 
+import jakarta.validation.Valid;
 import org.iesvdm.dao.PedidoDAO;
 import org.iesvdm.dao.PedidoDAOImpl;
 import org.iesvdm.dto.ClienteDTO;
@@ -13,6 +14,7 @@ import org.iesvdm.service.ComercialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,17 +58,22 @@ public class ComercialController {
     }
 
     @PostMapping("/comerciales/crear")
-    public RedirectView submitCrear(@ModelAttribute("comercial") Comercial comercial) {
+    public String submitCrear(@Valid @ModelAttribute("comercial") Comercial comercial, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("comercial", comercial);
+            return "crear-comerciales";
+        }
 
         comercialService.newComercial(comercial);
 
-        return new RedirectView("/comerciales") ;
+        return "redirect:/comerciales";
 
     }
 
     // DETALLE
     @GetMapping("/comerciales/{id}")
-    public String detalle(Model model, @PathVariable Integer id) {
+    public String detalle(@PathVariable Integer id,Model model) {
 
         Comercial comercial = comercialService.one(id);
         model.addAttribute("comercial", comercial);

@@ -12,22 +12,31 @@
 
             <div class="form-group">
                 <label th:text="#{msg.name}"></label>
-                <input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre">
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''" th:field="*{nombre}" placeholder="Nombre">
+                <ul class="text-danger" th:if="${#fields.hasErrors('nombre')}">
+                    <li th:each="err : ${#fields.errors('nombre')}" th:text="${err}" class="error"></li>
+                </ul>
             </div>
 
             <div class="form-group">
                 <label th:text="#{msg.surname1}"></label>
-                <input type="text" class="form-control" th:field="*{apellido1}" placeholder="Primer apellido">
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('apellido1')} ? 'is-invalid' : ''" th:field="*{apellido1}" placeholder="Primer apellido">
+                <ul class="text-danger" th:if="${#fields.hasErrors('apellido1')}">
+                    <li th:each="err : ${#fields.errors('apellido1')}" th:text="${err}" class="error"></li>
+                </ul>
             </div>
 
             <div class="form-group">
                 <label th:text="#{msg.surname2}"></label>
-                <input type="text" class="form-control" th:field="*{apellido2}" placeholder="Segundo apellido">
+                <input type="text" class="form-control" th:field="*{apellido2}" placeholder="Segundo apellido (Opcional)">
             </div>
 
             <div class="form-group">
                 <label th:text="#{msg.commission}"></label>
-                <input type="number" class="form-control" th:field="*{comision}" placeholder="Comisión">
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('comision')} ? 'is-invalid' : ''" th:field="*{comision}" placeholder="Comisión">
+                <ul class="text-danger" th:if="${#fields.hasErrors('comision')}">
+                    <li th:each="err : ${#fields.errors('comision')}" th:text="${err}" class="error"></li>
+                </ul>
             </div>
 
             <div class="form-group text-center">

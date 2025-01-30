@@ -2,6 +2,7 @@ package org.iesvdm.controlador;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.iesvdm.dao.ClienteDAO;
 import org.iesvdm.dao.ClienteDAOImpl;
 import org.iesvdm.dao.ComercialDAO;
@@ -16,6 +17,7 @@ import org.iesvdm.service.ComercialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,20 +53,25 @@ public class ClienteController {
 	//CREAR
 	@GetMapping("/clientes/crear")
 	public String crear (Model model) {
-
 		Cliente cliente = new Cliente();
 		model.addAttribute("cliente", cliente);
 
 		return "crear-clientes";
-
 	}
 
+
 	@PostMapping("/clientes/crear")
-	public RedirectView submitCrear(@ModelAttribute("cliente") Cliente cliente) {
+	public String submitCrear(@Valid @ModelAttribute("cliente") Cliente cliente, BindingResult bindingResult, Model model) {
+
+		if (bindingResult.hasErrors()) {
+
+			model.addAttribute("cliente", cliente);
+			return "crear-clientes";
+
+		}
 
 		clienteService.newCliente(cliente);
-
-		return new RedirectView("/clientes") ;
+		return "redirect:/clientes";
 
 	}
 
@@ -75,14 +82,8 @@ public class ClienteController {
 		Cliente cliente = clienteService.one(id);
 		model.addAttribute("cliente", cliente);
 
-		List<Pedido> listaPedidos = pedidoDAO.filterByComercialId(id);
+		List<Pedido> listaPedidos = pedidoDAO.filterByClienteId(id);
 		model.addAttribute("listaPedidos", listaPedidos);
-
-		List<Comercial> listaComerciales = comercialService.listAll();
-		model.addAttribute("listaComerciales", listaComerciales);
-
-		ClienteDTO clienteDTO = clienteDAOImpl.conteoComeriales(id);
-		model.addAttribute("clienteDTO", clienteDTO);
 
 		return "detalle-clientes";
 

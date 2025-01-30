@@ -33,8 +33,8 @@ public class ClienteDAOImpl implements ClienteDAO {
 	public synchronized void create(Cliente cliente) {
 
 		String sqlInsert = """
-                INSERT INTO cliente (nombre, apellido1, apellido2, ciudad, categoria) 
-                VALUES  (     ?,         ?,         ?,       ?,         ?)
+                INSERT INTO cliente (nombre, apellido1, apellido2, ciudad, categoria, email) 
+                VALUES  (?,?,?,?,?,?)
                 """;
 
 		KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -45,13 +45,15 @@ public class ClienteDAOImpl implements ClienteDAO {
 			ps.setString(idx++, cliente.getApellido1());
 			ps.setString(idx++, cliente.getApellido2());
 			ps.setString(idx++, cliente.getCiudad());
-			ps.setInt(idx, cliente.getCategoria());
+			ps.setInt(idx++, cliente.getCategoria());
+			ps.setString(idx, cliente.getEmail());
 			return ps;
 		}, keyHolder);
 
 		cliente.setId(keyHolder.getKey().intValue());
 
 		log.info("Insertados {} registros.", rows);
+
 	}
 
 	/**
@@ -67,13 +69,15 @@ public class ClienteDAOImpl implements ClienteDAO {
 						rs.getString("apellido1"),
 						rs.getString("apellido2"),
 						rs.getString("ciudad"),
-						rs.getInt("categoria")
+						rs.getInt("categoria"),
+						rs.getString("email")
 				)
 		);
 
 		log.info("Devueltos {} registros.", listFab.size());
 
 		return listFab;
+
 	}
 
 	/**
@@ -89,7 +93,8 @@ public class ClienteDAOImpl implements ClienteDAO {
 								rs.getString("apellido1"),
 								rs.getString("apellido2"),
 								rs.getString("ciudad"),
-								rs.getInt("categoria"))
+								rs.getInt("categoria"),
+								rs.getString("email"))
 						, id
 				);
 
@@ -114,13 +119,16 @@ public class ClienteDAOImpl implements ClienteDAO {
                         				apellido1 = ?, 
                         				apellido2 = ?,
                         				ciudad = ?,
-                        				categoria = ?  
+                        				categoria = ?, 
+               							email = ?
                         		WHERE id = ?
-                        """, cliente.getNombre()
+                        """
+				, cliente.getNombre()
 				, cliente.getApellido1()
 				, cliente.getApellido2()
 				, cliente.getCiudad()
 				, cliente.getCategoria()
+				, cliente.getEmail()
 				, cliente.getId());
 
 		log.info("Update de Cliente con {} registros actualizados.", rows);
@@ -137,17 +145,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 		int rows = jdbcTemplate.update("DELETE FROM cliente WHERE id = ?", id);
 
 		log.info("Delete de Cliente con {} registros eliminados.", rows);
-
-	}
-
-	@Override
-	public ClienteDTO conteoComeriales(int id) {
-		String sql = """
-						SELECT COUNT(*) AS pedidosPorComercial
-						FROM pedido WHERE id_comercial = ?
-					""";
-
-		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(ClienteDTO.class), id);
 
 	}
 

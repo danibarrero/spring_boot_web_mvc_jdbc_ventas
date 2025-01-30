@@ -13,27 +13,47 @@
 
             <div class="form-group">
                 <label th:text="#{msg.name}"></label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''" th:field="*{nombre}" placeholder="Nombre">
+                <ul class="text-danger" th:if="${#fields.hasErrors('nombre')}">
+                    <li th:each="err : ${#fields.errors('nombre')}" th:text="${err}" class="error"></li>
+                </ul>
             </div>
 
             <div class="form-group">
                 <label th:text="#{msg.surname1}"></label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('apellido1')} ? 'is-invalid' : ''" th:field="*{apellido1}" placeholder="Primer apellido">
+                <ul class="text-danger" th:if="${#fields.hasErrors('apellido1')}">
+                    <li th:each="err : ${#fields.errors('apellido1')}" th:text="${err}" class="error"></li>
+                </ul>
             </div>
 
             <div class="form-group">
                 <label th:text="#{msg.surname2}"></label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" th:field="*{apellido2}" placeholder="Segundo apellido (Opcional)">
             </div>
 
             <div class="form-group">
                 <label th:text="#{msg.city}"></label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('ciudad')} ? 'is-invalid' : ''" th:field="*{ciudad}" placeholder="Ciudad">
+                <ul class="text-danger" th:if="${#fields.hasErrors('ciudad')}">
+                    <li th:each="err : ${#fields.errors('ciudad')}" th:text="${err}" class="error"></li>
+                </ul>
             </div>
 
             <div class="form-group">
                 <label th:text="#{msg.category}"></label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('categoria')} ? 'is-invalid' : ''" th:field="*{categoria}">
+                <ul class="text-danger" th:if="${#fields.hasErrors('categoria')}">
+                    <li th:each="err : ${#fields.errors('categoria')}" th:text="${err}" class="error"></li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label th:text="#{msg.email}"></label>
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''" th:field="*{email}" placeholder="Email">
+                <ul class="text-danger" th:if="${#fields.hasErrors('email')}">
+                    <li th:each="err : ${#fields.errors('email')}" th:text="${err}" class="error"></li>
+                </ul>
             </div>
 
             <div class="form-group text-center">

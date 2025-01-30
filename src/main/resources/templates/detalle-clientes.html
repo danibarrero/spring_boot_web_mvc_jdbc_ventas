@@ -35,18 +35,8 @@
         </div>
 
         <div class="form-group">
-            <label>Lista Comerciales</label>
-            <select class="form-control" onchange="this.selectedIndex = 0;" style="background-color: #eaedf0">
-                <option th:each="comercial : ${listaComerciales}"
-                        th:value="${comercial.id}"
-                        th:text="${comercial.nombre}">
-                </option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label>Conteo Pedidos de Comerciales</label>
-            <input type="text" th:value="${clienteDTO.pedidosPorComercial}" class="form-control" readonly="readonly">
+            <label th:text="#{msg.email}"></label>
+            <input type="text" th:value="${cliente.email}" class="form-control" readonly="readonly">
         </div>
 
         <br>
